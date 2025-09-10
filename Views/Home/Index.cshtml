@@ -1,8 +1,84 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home - Contract Monthly Claim System";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="https://cdn-icons-png.flaticon.com/512/3565/3565418.png" alt="" width="72" height="72">
+    <h1 class="display-5 fw-bold text-primary">Contract Monthly Claim System</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Streamline the process of submitting and approving monthly claims for independent contractor lecturers. Our system ensures accuracy, transparency, and efficiency from submission to settlement.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a asp-controller="Claims" asp-action="Index" class="btn btn-primary btn-lg px-4 gap-3">My Dashboard</a>
+                <a asp-controller="Claims" asp-action="Create" class="btn btn-outline-secondary btn-lg px-4">Submit New Claim</a>
+            }
+            else
+            {
+                <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
+                <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-secondary btn-lg px-4">Login</a>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container px-4 py-5" id="featured-3">
+    <h2 class="pb-2 border-bottom text-center">Why Use CMCS?</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="feature col">
+            <div class="feature-icon bg-primary bg-gradient d-inline-flex align-items-center justify-content-center fs-2 mb-3 p-3 rounded-circle text-white">
+                <i>⏱️</i>
+            </div>
+            <h3>Save Time</h3>
+            <p>Submit your claims in minutes with our intuitive interface. No more paperwork or manual calculations.</p>
+        </div>
+        <div class="feature col">
+            <div class="feature-icon bg-primary bg-gradient d-inline-flex align-items-center justify-content-center fs-2 mb-3 p-3 rounded-circle text-white">
+                <i>👁️</i>
+            </div>
+            <h3>Total Transparency</h3>
+            <p>Track your claim status in real-time from submission to approval. Know exactly where your claim stands.</p>
+        </div>
+        <div class="feature col">
+            <div class="feature-icon bg-primary bg-gradient d-inline-flex align-items-center justify-content-center fs-2 mb-3 p-3 rounded-circle text-white">
+                <i>📁</i>
+            </div>
+            <h3>Easy Documentation</h3>
+            <p>Upload supporting documents directly to your claims. Keep everything organized in one place.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Roles Section -->
+<div class="bg-light">
+    <div class="container px-4 py-5">
+        <h2 class="pb-2 border-bottom text-center">Built for Everyone</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+            <div class="col d-flex align-items-start">
+                <div>
+                    <h4 class="fw-bold mb-0">Lecturers</h4>
+                    <p>Submit monthly claims quickly and track their progress.</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div>
+                    <h4 class="fw-bold mb-0">Program Coordinators</h4>
+                    <p>Review and verify claims efficiently with a clear overview.</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div>
+                    <h4 class="fw-bold mb-0">Academic Managers</h4>
+                    <p>Approve claims and manage the entire process seamlessly.</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-start">
+                <div>
+                    <h4 class="fw-bold mb-0">Administrators</h4>
+                    <p>Ensure consistent and reliable information across all claims.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

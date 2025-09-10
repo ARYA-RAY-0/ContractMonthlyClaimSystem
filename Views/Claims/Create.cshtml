@@ -1,0 +1,130 @@
+﻿@model ContractMonthlyClaimSystem.Models.Claim
+
+@{
+    ViewData["Title"] = "Create New Claim";
+}
+
+<h1>Create New Claim</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Claim Month Field -->
+            <div class="form-group mb-3">
+                <label asp-for="ClaimMonth" class="control-label fw-bold">Claim For Month</label>
+                <input asp-for="ClaimMonth" class="form-control" />
+                <span asp-validation-for="ClaimMonth" class="text-danger"></span>
+            </div>
+
+            <!-- Section for Adding Claim Items -->
+            <div class="form-group mb-4 p-3 border rounded">
+                <h4 class="text-primary">Add Work Items</h4>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <label asp-for="NewItemDescription" class="control-label">Description</label>
+                        <input asp-for="NewItemDescription" class="form-control" placeholder="e.g., Lecture on ASP.NET" />
+                    </div>
+                    <div class="col-md-3">
+                        <label asp-for="NewItemHours" class="control-label">Hours Worked</label>
+                        <input asp-for="NewItemHours" class="form-control" placeholder="2.5" />
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <!-- Non-functional button for UI only -->
+                        <button type="button" class="btn btn-secondary mt-2 w-100">Add Item</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholder for Claim Items list -->
+            <div class="mb-4">
+                <h5>Current Items</h5>
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Description</th>
+                            <th>Hours</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Fake data for UI prototype -->
+                        <tr>
+                            <td>Lecture on ASP.NET MVC</td>
+                            <td>3.0</td>
+                            <td><button type="button" class="btn btn-sm btn-outline-danger">Remove</button></td>
+                        </tr>
+                        <tr>
+                            <td>Student Consultations</td>
+                            <td>2.5</td>
+                            <td><button type="button" class="btn btn-sm btn-outline-danger">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Section for Uploading Documents -->
+            <div class="form-group mb-4 p-3 border rounded">
+                <h4 class="text-primary">Supporting Documents</h4>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <label asp-for="UploadedFile" class="control-label">Upload File</label>
+                        <input type="file" asp-for="UploadedFile" class="form-control" />
+                    </div>
+                    <div class="col-md-4 d-flex align-items-end">
+                        <!-- Non-functional button for UI only -->
+                        <button type="button" class="btn btn-secondary mt-2 w-100">Upload Document</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholder for Documents list -->
+            <div class="mb-4">
+                <h5>Uploaded Documents</h5>
+                <table class="table table-bordered">
+                    <thead class="table-light">
+                        <tr><th>File Name</th><th>Action</th></tr>
+                    </thead>
+                    <tbody>
+                        <!-- Fake data for UI prototype -->
+                        <tr>
+                            <td>timesheet_september.pdf</td>
+                            <td><button type="button" class="btn btn-sm btn-outline-danger">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Totals Section (Non-functional, for display only) -->
+            <div class="form-group mb-4 p-3 bg-light rounded">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Total Hours: <span class="text-success">5.5</span></h5>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Total Amount: <span class="text-success">R 2,750.00</span></h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <input type="submit" value="Submit Claim" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-secondary mt-3">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

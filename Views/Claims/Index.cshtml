@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ContractMonthlyClaimSystem.Models.Claim>
+
+@{
+    ViewData["Title"] = "My Claims Dashboard";
+}
+
+<h1>My Claims Dashboard</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Submit New Claim</a>
+</p>
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Claim Month</th>
+            <th>Total Hours</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClaimMonth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalHours)
+                </td>
+                <td>
+                    R @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td>
+                    @{
+                        var badgeClass = "bg-secondary";
+                        if (item.Status == ContractMonthlyClaimSystem.Models.ClaimStatus.Submitted) badgeClass = "bg-info";
+                        if (item.Status == ContractMonthlyClaimSystem.Models.ClaimStatus.ApprovedByCoordinator) badgeClass = "bg-warning";
+                        if (item.Status == ContractMonthlyClaimSystem.Models.ClaimStatus.ApprovedByManager) badgeClass = "bg-success";
+                        if (item.Status == ContractMonthlyClaimSystem.Models.ClaimStatus.Rejected) badgeClass = "bg-danger";
+                    }
+                    <span class="badge @badgeClass">@Html.DisplayFor(modelItem => item.Status)</span>
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ClaimId" class="btn btn-sm btn-outline-primary">Details</a>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View Documents</button>
+
+                    @if (item.Status == ContractMonthlyClaimSystem.Models.ClaimStatus.Submitted)
+                    {
+                        <button type="button" class="btn btn-sm btn-outline-success">Approve</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger">Reject</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
